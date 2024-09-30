@@ -25,7 +25,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
         )
         .formLogin((form) -> form
             .loginPage("/login")
-            .defaultSuccessUrl("/proyectos", true)
+            .defaultSuccessUrl("/Home", true)
         )
          .logout((logout) -> logout
             .logoutUrl("/logout")
