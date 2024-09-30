@@ -59,11 +59,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/proyectos">Proyectos</a>
                     </li>
+                    <!-- Botón de Logout -->
+                    <li class="nav-item">
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit" class="btn btn-link nav-link" style="color: white;">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
+    
     <div class="container">
         <h1 th:if="${proyecto.id != null}" th:text="'Editar Proyecto'">Editar Proyecto</h1>
         <h1 th:if="${proyecto.id == null}" th:text="'Nuevo Proyecto'">Nuevo Proyecto</h1>

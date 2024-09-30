@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class HomeWebController {
 
-    @GetMapping("/")
+    @GetMapping("/Home")
     public String home() {
         return "Home";
     }

@@ -50,10 +50,17 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
+                    <!-- Botón de Logout -->
+                    <li class="nav-item">
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit" class="btn btn-link nav-link" style="color: white;">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    
 
     <div class="container mt-5">
         <div class="border-bottom border-dark mb-4">
