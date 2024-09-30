@@ -11,11 +11,11 @@ import java.util.List;
 public class CategoriaController {
 
     private final CategoriaRepository categoriaRepository;
-    private final ProductoRepository productoRepository;
+    private final ProyectoRepository proyectoRepository;
 
-    public CategoriaController(CategoriaRepository categoriaRepository, ProductoRepository productoRepository) {
+    public CategoriaController(CategoriaRepository categoriaRepository, ProyectoRepository proyectoRepository) {
         this.categoriaRepository = categoriaRepository;
-        this.productoRepository = productoRepository;
+        this.proyectoRepository = proyectoRepository;
     }
 
     @GetMapping
@@ -52,21 +52,21 @@ public class CategoriaController {
         if (!categoriaRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-        // Verificar si hay productos asociados a esta categoría
-        List<Producto> productosAsociados = productoRepository.findByCategoriaId(id);
-        if (!productosAsociados.isEmpty()) {
-            return ResponseEntity.badRequest().build(); // No se puede eliminar una categoría con productos asociados
+        // Verificar si hay proyectos asociados a esta categoría
+        List<Proyecto> proyectosAsociados = proyectoRepository.findByCategoriaId(id);
+        if (!proyectosAsociados.isEmpty()) {
+            return ResponseEntity.badRequest().build(); // No se puede eliminar una categoría con proyectos asociados
         }
         categoriaRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{id}/productos")
-    public ResponseEntity<List<Producto>> obtenerProductosPorCategoria(@PathVariable Long id) {
+    @GetMapping("/{id}/proyectos")
+    public ResponseEntity<List<Proyecto>> obtenerProyectosPorCategoria(@PathVariable Long id) {
         if (!categoriaRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-        List<Producto> productos = productoRepository.findByCategoriaId(id);
-        return ResponseEntity.ok(productos);
+        List<Proyecto> proyectos = proyectoRepository.findByCategoriaId(id);
+        return ResponseEntity.ok(proyectos);
     }
 }

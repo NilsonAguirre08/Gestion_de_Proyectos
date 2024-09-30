@@ -2,14 +2,11 @@ package com.company.spring_boot_crud_app;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.List;
-
 @Entity
-@Table(name = "categorias")
+@Table(name = "proyectos")
 @Data
-public class Categoria {
+public class Proyecto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,15 +15,20 @@ public class Categoria {
     @Column(nullable = false)
     private String nombre;
 
-    @OneToMany(mappedBy = "categoria")
-    @JsonIgnore // Evita la serialización de la lista de proyectos
-    private List<Proyecto> proyectos;
+    @Column(nullable = false)
+    private double precio;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    @JsonIgnore // Evita la serialización de la categoría para prevenir bucles
+    private Categoria categoria;
 
     @Override
     public String toString() {
-        return "Categoria{" +
+        return "Proyecto{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
                 '}';
     }
 }

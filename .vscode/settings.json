@@ -11,10 +11,9 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "MysqlDockerLocalhost",
-            "database": "db",
-            "username": "usuario",
-            "password": "Asde71.4Asde71.4"
+            "database": "sch",
+            "username": "root",
+            "password": "springboot"
         }
     ]
 }

@@ -25,7 +25,7 @@ class CategoriaControllerTest {
     private CategoriaRepository categoriaRepository;
 
     @Mock
-    private ProductoRepository productoRepository;
+    private ProyectoRepository proyectoRepository;
 
     @InjectMocks
     private CategoriaController categoriaController;
@@ -112,7 +112,7 @@ class CategoriaControllerTest {
     void testEliminarCategoria() {
         System.out.println("Ejecutando prueba: testEliminarCategoria");
         when(categoriaRepository.existsById(anyLong())).thenReturn(true);
-        when(productoRepository.findByCategoriaId(anyLong())).thenReturn(Arrays.asList());
+        when(proyectoRepository.findByCategoriaId(anyLong())).thenReturn(Arrays.asList());
         doNothing().when(categoriaRepository).deleteById(anyLong());
         
         System.out.println("Datos enviados a la API: ID = 1");
@@ -124,10 +124,10 @@ class CategoriaControllerTest {
     }
 
     @Test
-    void testEliminarCategoriaConProductosAsociados() {
-        System.out.println("Ejecutando prueba: testEliminarCategoriaConProductosAsociados");
+    void testEliminarCategoriaConProyectosAsociados() {
+        System.out.println("Ejecutando prueba: testEliminarCategoriaConProyectosAsociados");
         when(categoriaRepository.existsById(anyLong())).thenReturn(true);
-        when(productoRepository.findByCategoriaId(anyLong())).thenReturn(Arrays.asList(new Producto()));
+        when(proyectoRepository.findByCategoriaId(anyLong())).thenReturn(Arrays.asList(new Proyecto()));
         
         System.out.println("Datos enviados a la API: ID = 1");
         ResponseEntity<Void> response = categoriaController.eliminarCategoria(1L);
@@ -137,13 +137,13 @@ class CategoriaControllerTest {
     }
 
     @Test
-    void testObtenerProductosPorCategoria() {
-        System.out.println("Ejecutando prueba: testObtenerProductosPorCategoria");
+    void testObtenerProyectosPorCategoria() {
+        System.out.println("Ejecutando prueba: testObtenerProyectosPorCategoria");
         when(categoriaRepository.existsById(anyLong())).thenReturn(true);
-        when(productoRepository.findByCategoriaId(anyLong())).thenReturn(Arrays.asList(new Producto()));
+        when(proyectoRepository.findByCategoriaId(anyLong())).thenReturn(Arrays.asList(new Proyecto()));
         
         System.out.println("Datos enviados a la API: Categoria ID = 1");
-        ResponseEntity<List<Producto>> response = categoriaController.obtenerProductosPorCategoria(1L);
+        ResponseEntity<List<Proyecto>> response = categoriaController.obtenerProyectosPorCategoria(1L);
         System.out.println("Datos devueltos de la API: " + response.getStatusCode());
 
         Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());

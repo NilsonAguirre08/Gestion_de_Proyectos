@@ -15,7 +15,7 @@ import org.springframework.lang.NonNull; // Importa la anotación para indicar q
 import org.slf4j.Logger; // Importa la interfaz Logger para el registro de mensajes.
 import org.slf4j.LoggerFactory; // Importa la clase para crear instancias de Logger.
 
-@SpringBootApplication // Anotación que marca esta clase como la entrada principal de la aplicación de Spring Boot.
+@SpringBootApplication
 public class SpringBootCrudAppApplication {
 
     /**
